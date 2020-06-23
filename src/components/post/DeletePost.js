@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 import PropTypes from "prop-types";
 
 //MUI Stuff
@@ -11,7 +11,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DeleteIcon from "@material-ui/icons/DeleteOutline";
 
 import { connect } from "react-redux";
-import { deletePost } from "../redux/actions/dataActions";
+import { deletePost } from "../../redux/actions/dataActions";
 
 const styles = {
   deleteButton: {
@@ -60,7 +60,7 @@ class DeletePost extends Component {
             <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.deleteScream} color="secondary">
+            <Button onClick={this.deletePost} color="secondary">
               Delete
             </Button>
           </DialogActions>
