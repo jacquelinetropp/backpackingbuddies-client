@@ -6,10 +6,12 @@ import {
   SET_UNAUTHENTICATED,
   LOADING_USER,
   MARK_NOTIFCATIONS_READ,
+  FOLLOW_USER,
+  UNFOLLOW_USER,
 } from "../types";
 import axios from "axios";
 
-export const loginUser = (userData, history) => (dispatch) => {
+export const loginUser = (userData) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
     .post("/login", userData)
@@ -17,9 +19,9 @@ export const loginUser = (userData, history) => (dispatch) => {
       setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
-      history.push("/");
     })
     .catch((err) => {
+      console.log(err);
       dispatch({
         type: SET_ERRORS,
         payload: err.response.data,
@@ -35,9 +37,10 @@ export const signupUser = (newUserData, history) => (dispatch) => {
       setAuthorizationHeader(res.data.token);
       dispatch(getUserData());
       dispatch({ type: CLEAR_ERRORS });
-      history.push("/");
+      history.push("/createprofile");
     })
     .catch((err) => {
+      console.log(err);
       dispatch({
         type: SET_ERRORS,
         payload: err.response.data,
@@ -81,11 +84,43 @@ export const editUserDetails = (userDetails) => (dispatch) => {
     });
 };
 
+export const createUserDetails = (userDetails, history) => (dispatch) => {
+  dispatch({ type: LOADING_USER });
+  axios
+    .post("/user", userDetails)
+    .then(() => {
+      dispatch(getUserData());
+      // history.push("/");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 export const markNotificationsRead = (notificationIds) => (dispatch) => {
   axios
     .post("/notifications", notificationIds)
     .then((res) => {
       dispatch({ type: MARK_NOTIFCATIONS_READ });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const followUser = (handle) => (dispatch) => {
+  axios
+    .get(`/user/${handle}/follow`)
+    .then((res) => {
+      dispatch({ type: FOLLOW_USER, payload: res.data });
+      console.log(res.data);
+    })
+    .catch((err) => console.log(err));
+};
+
+export const unfollowUser = (handle) => (dispatch) => {
+  axios
+    .get(`/user/${handle}/unfollow`)
+    .then((res) => {
+      dispatch({ type: UNFOLLOW_USER, payload: res.data });
     })
     .catch((err) => console.log(err));
 };

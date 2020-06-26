@@ -13,6 +13,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import MyButton from "../../util/MyButton";
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
+import EditIcon from "@material-ui/icons/Edit";
 
 const styles = (theme) => ({
   ...theme.spreadThis,
@@ -35,6 +36,8 @@ class CreatePost extends Component {
   state = {
     open: false,
     body: "",
+    title: "",
+    postLocation: "",
     errors: {},
   };
 
@@ -45,7 +48,7 @@ class CreatePost extends Component {
       });
     }
     if (!nextProps.UI.errors && !nextProps.UI.loading) {
-      this.setState({ body: "", errors: {} });
+      this.setState({ body: "", location: "", title: "", errors: {} });
     }
   }
 
@@ -64,7 +67,13 @@ class CreatePost extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.postPost({ body: this.state.body });
+    const newPost = {
+      body: this.state.body,
+      title: this.state.title,
+      location: this.state.location,
+    };
+    this.props.postPost(newPost);
+    this.handleClose();
   };
 
   render() {
@@ -94,6 +103,26 @@ class CreatePost extends Component {
           <DialogTitle>Create a new post</DialogTitle>
           <DialogContent>
             <form onSubmit={this.handleSubmit}>
+              <TextField
+                name="title"
+                type="text"
+                label="Title"
+                placeholder="Write an eye-catching title"
+                error={errors.title ? true : false}
+                helperText={errors.title}
+                className={classes.textField}
+                onChange={this.handleChange}
+                fullWidth
+              />
+              <TextField
+                name="location"
+                type="text"
+                label="Location"
+                placeholder="Where did this post take place"
+                className={classes.textField}
+                onChange={this.handleChange}
+                fullWidth
+              />
               <TextField
                 name="body"
                 type="text"

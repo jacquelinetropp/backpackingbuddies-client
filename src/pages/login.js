@@ -25,7 +25,6 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-
       errors: {},
     };
   }
@@ -63,8 +62,8 @@ class Login extends Component {
           </Typography>
           <form noValidate onSubmit={this.handleSubmit}>
             <TextField
-              id="email"
-              name="email"
+              id="emailLogin"
+              name="emailLogin"
               type="email"
               label="Email"
               className={classes.textField}
@@ -75,8 +74,8 @@ class Login extends Component {
               fullWidth
             />
             <TextField
-              id="password"
-              name="password"
+              id="passwordLogin"
+              name="passwordLogin"
               type="password"
               label="Password"
               className={classes.textField}

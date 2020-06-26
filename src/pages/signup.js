@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
-import AppIcon from "../images/icon.png";
-import { Link } from "react-router-dom";
+import AppIcon from "../images/icon2.png";
+import { withRouter } from "react-router-dom";
 
 //MUI Stuff
 import Grid from "@material-ui/core/Grid";
@@ -17,6 +17,9 @@ import { signupUser } from "../redux/actions/userActions";
 
 const style = (theme) => ({
   ...theme.spreadThis,
+  imageIcon: {
+    maxWidth: 100,
+  },
 });
 
 class SignUp extends Component {
@@ -38,6 +41,7 @@ class SignUp extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault();
+    event.stopPropagation();
     this.setState({
       loading: true,
     });
@@ -62,9 +66,12 @@ class SignUp extends Component {
     const { errors } = this.state;
     return (
       <Grid container className={classes.form}>
-        <Grid item sm />
         <Grid item sm>
-          <img src={AppIcon} alt="logo - monkey" className={classes.image} />
+          <img
+            src={AppIcon}
+            alt="logo - backpack"
+            className={classes.imageIcon}
+          />
           <Typography variant="h2" className={classes.pageTitle}>
             Signup
           </Typography>
@@ -117,6 +124,9 @@ class SignUp extends Component {
               onChange={this.handleChange}
               fullWidth
             />
+            <Typography variant="body2">
+              Warning: your handle cannot be changed
+            </Typography>
 
             {errors.general && (
               <Typography variant="body2" className={classes.customError}>
@@ -129,18 +139,13 @@ class SignUp extends Component {
               color="primary"
               className={classes.button}
             >
-              Login
+              Signup
               {loading && (
                 <CircularProgress size={30} className={classes.progress} />
               )}
             </Button>
-            <br />
-            <small>
-              Already have an account? Login <Link to="/login">Here</Link>
-            </small>
           </form>
         </Grid>
-        <Grid item sm />
       </Grid>
     );
   }
@@ -159,5 +164,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { signupUser })(
-  withStyles(style)(SignUp)
+  withStyles(style)(withRouter(SignUp))
 );

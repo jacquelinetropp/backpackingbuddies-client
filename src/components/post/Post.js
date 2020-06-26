@@ -16,6 +16,7 @@ import Typography from "@material-ui/core/Typography";
 
 //Icons
 import ChatIcon from "@material-ui/icons/Chat";
+import LocationOn from "@material-ui/icons/LocationOn";
 
 import { connect } from "react-redux";
 
@@ -32,6 +33,17 @@ const styles = {
   content: {
     padding: 25,
   },
+  userDate: {
+    display: "flex",
+    alignItems: "baseline",
+  },
+  date: {
+    paddingLeft: 10,
+  },
+  titleDiv: {
+    display: "flex",
+  },
+  locationDiv: {},
 };
 
 export class Post extends Component {
@@ -47,6 +59,8 @@ export class Post extends Component {
         postId,
         likeCount,
         commentCount,
+        location,
+        title,
       },
       user: {
         authenticated,
@@ -68,19 +82,40 @@ export class Post extends Component {
             className={classes.image}
           />
           <CardContent className={classes.content}>
-            <Typography
-              variant="h5"
-              component={Link}
-              to={`/user/${userHandle}`}
-              color="primary"
-            >
-              {userHandle}
-            </Typography>
-            {deleteButton}
-            <Typography variant="body2" color="textSecondary">
-              {dayjs(createdAt).fromNow()}
-            </Typography>
+            <Typography variant="h4">{title}</Typography>
+
+            <div className={classes.userDate}>
+              <Typography
+                variant="h6"
+                component={Link}
+                to={`/user/${userHandle}`}
+                color="primary"
+              >
+                {userHandle}
+              </Typography>
+              {deleteButton}
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                className={classes.date}
+              >
+                {dayjs(createdAt).fromNow()}
+              </Typography>
+            </div>
+
             <Typography variant="body1">{body}</Typography>
+            {location ? (
+              <div className={classes.locationDiv}>
+                <Typography
+                  variant="body2"
+                  className={classes.location}
+                  color="textSecondary"
+                >
+                  <LocationOn />
+                  {location}
+                </Typography>
+              </div>
+            ) : null}
             <LikeButton postId={postId} />
             <span>{likeCount} Likes</span>
             <MyButton tip="comments">

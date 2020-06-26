@@ -1,47 +1,56 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
+import AppIcon from "../../images/icon2.png";
 import { Link } from "react-router-dom";
+
 import PropTypes from "prop-types";
-import MyButton from "../../util/MyButton";
-import CreatePost from "../post/CreatePost";
-import Notifications from "./Notifications";
+
+import withStyles from "@material-ui/core/styles/withStyles";
+import LoggedOut from "../navbar/LoggedOut";
+import LoggedIn from "../navbar/LoggedIn";
 
 import { connect } from "react-redux";
 
 //MUI stuff
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
-import HomeIcon from "@material-ui/icons/Home";
+import Typography from "@material-ui/core/Typography";
 
-export class Navbar extends Component {
+const styles = {
+  navbar: {
+    backgroundColor: "#c4baa7",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  imageIcon: {
+    maxHeight: 25,
+  },
+  Brand: {
+    display: "flex",
+
+    "& visited": {
+      color: "#524A21",
+    },
+  },
+};
+
+class Navbar extends Component {
   render() {
-    const { authenticated } = this.props;
+    const { authenticated, classes } = this.props;
     return (
-      <AppBar>
+      <AppBar className={classes.navbar}>
         <Toolbar className="nav-container">
-          {authenticated ? (
-            <Fragment>
-              <CreatePost />
-              <Link to="/">
-                <MyButton tip="Home">
-                  <HomeIcon />
-                </MyButton>
-              </Link>
-              <Notifications />
-            </Fragment>
-          ) : (
-            <Fragment>
-              <Button color="inherit" component={Link} to="/login">
-                Login
-              </Button>
-              <Button color="inherit" component={Link} to="/">
-                Home
-              </Button>
-              <Button color="inherit" component={Link} to="/signup">
-                Signup
-              </Button>
-            </Fragment>
-          )}
+          <Link to="/" className={classes.Brand}>
+            <img
+              src={AppIcon}
+              alt="logo - backpack"
+              className={classes.imageIcon}
+            />
+            <Typography variant="h5" className={classes.title}>
+              Backpacking Buddies
+            </Typography>
+          </Link>
+          {authenticated ? <LoggedIn /> : <LoggedOut />}
         </Toolbar>
       </AppBar>
     );
@@ -56,4 +65,4 @@ const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated,
 });
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps)(withStyles(styles)(Navbar));

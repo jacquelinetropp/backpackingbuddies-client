@@ -6,10 +6,14 @@ import {
   LIKE_POST,
   UNLIKE_POST,
   MARK_NOTIFCATIONS_READ,
+  UNFOLLOW_USER,
+  FOLLOW_USER,
 } from "../types";
 
 const initialState = {
   authenticated: false,
+  followers: [],
+  following: [],
   loading: false,
   credentials: {},
   likes: [],
@@ -54,11 +58,28 @@ export default function (state = initialState, action) {
           (like) => like.postId !== action.payload.postId
         ),
       };
+    case FOLLOW_USER:
+      return {
+        ...state,
+        following: [
+          {
+            following: action.payload.handle,
+          },
+        ],
+      };
+    case UNFOLLOW_USER:
+      return {
+        ...state,
+        following: state.following.filter(
+          (follower) => (follower.following = action.payload.handle)
+        ),
+      };
     case MARK_NOTIFCATIONS_READ:
       state.notifications.forEach((not) => (not.read = true));
       return {
         ...state,
       };
+
     default:
       return state;
   }

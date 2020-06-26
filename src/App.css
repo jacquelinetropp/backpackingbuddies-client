@@ -2,15 +2,24 @@ html,
 body {
   font-family: "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "sans-serif";
   background-color: rgb(245, 245, 245);
+  color: #524a21;
 }
 
 .container {
-  margin: 80px auto 0 auto;
+  margin: 68px auto 0 auto;
+}
+
+.page {
   max-width: 1200px;
+  margin: 100px auto 0 auto;
 }
 
 .nav-container {
   margin: auto;
+  width: 92%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .nav-container svg {
@@ -19,4 +28,8 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.Mui-focused {
+  color: #524a21;
 }

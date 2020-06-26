@@ -17,6 +17,7 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import User from "./pages/User";
+import CreateDetails from "./pages/CreateDetails";
 
 import "./App.css";
 
@@ -50,6 +51,7 @@ function App() {
             <AuthRoute exact path="/signup" component={Signup} />
             <Route exact path="/user/:handle" component={User} />
             <Route exact path="/user/:handle/post/:postId" component={User} />
+            <Route exact path="/createprofile" component={CreateDetails} />
           </Switch>
         </div>
       </Provider>
