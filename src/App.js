@@ -18,6 +18,8 @@ import Login from "./pages/login";
 import Signup from "./pages/signup";
 import User from "./pages/User";
 import CreateDetails from "./pages/CreateDetails";
+import HomePosts from "./pages/HomePosts";
+import Explore from "./pages/Explore";
 
 import "./App.css";
 
@@ -47,6 +49,8 @@ function App() {
         <div className="container">
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/home" component={HomePosts} />
+            <Route exact path="/explore" component={Explore} />
             <AuthRoute exact path="/login" component={Login} />
             <AuthRoute exact path="/signup" component={Signup} />
             <Route exact path="/user/:handle" component={User} />

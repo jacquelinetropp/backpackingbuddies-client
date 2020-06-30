@@ -17,7 +17,9 @@ import MyButton from "../../util/MyButton";
 const styles = (theme) => ({
   ...theme.spreadThis,
   button: {
-    float: "right",
+    position: "absolute",
+    right: "1%",
+    bottom: "1%",
   },
 });
 

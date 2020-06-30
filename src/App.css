@@ -26,7 +26,8 @@ body {
   color: #fff;
 }
 
-a {
+a,
+a:visited {
   text-decoration: none;
 }
 

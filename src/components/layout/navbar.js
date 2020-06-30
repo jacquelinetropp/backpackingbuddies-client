@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import AppIcon from "../../images/icon2.png";
 import { Link } from "react-router-dom";
 
-import PropTypes from "prop-types";
-
 import withStyles from "@material-ui/core/styles/withStyles";
 import LoggedOut from "../navbar/LoggedOut";
 import LoggedIn from "../navbar/LoggedIn";
@@ -56,10 +54,6 @@ class Navbar extends Component {
     );
   }
 }
-
-Navbar.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated,

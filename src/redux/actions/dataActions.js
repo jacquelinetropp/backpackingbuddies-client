@@ -11,6 +11,7 @@ import {
   SET_POST,
   STOP_LOADING_UI,
   SUBMIT_COMMENT,
+  SET_PROFILE,
 } from "../types";
 import axios from "axios";
 
@@ -19,6 +20,21 @@ export const getPosts = () => (dispatch) => {
   dispatch({ type: LOADING_DATA });
   axios
     .get("/posts")
+    .then((res) => {
+      dispatch({ type: SET_POSTS, payload: res.data });
+    })
+    .catch((err) => {
+      dispatch({
+        type: SET_POSTS,
+        payload: [],
+      });
+    });
+};
+
+export const getFollowingPosts = () => (dispatch) => {
+  dispatch({ type: LOADING_DATA });
+  axios
+    .get("/posts/following")
     .then((res) => {
       dispatch({ type: SET_POSTS, payload: res.data });
     })
@@ -120,6 +136,21 @@ export const getUserData = (userHandle) => (dispatch) => {
         type: SET_POSTS,
         payload: null,
       });
+    });
+};
+
+export const getProfile = (userHandle) => (dispatch) => {
+  dispatch({ type: LOADING_DATA });
+  axios
+    .get(`/user/${userHandle}`)
+    .then((res) => {
+      dispatch({
+        type: SET_PROFILE,
+        payload: res.data.user,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
 };
 

@@ -7,14 +7,14 @@ import {
   DELETE_POST,
   POST_POST,
   SUBMIT_COMMENT,
-  FOLLOW_USER,
-  UNFOLLOW_USER,
+  SET_PROFILE,
 } from "../types";
 
 const initialState = {
   posts: [],
   post: {},
   loading: false,
+  profile: {},
 };
 
 export default function (state = initialState, action) {
@@ -65,19 +65,10 @@ export default function (state = initialState, action) {
           comments: [action.payload, ...state.post.comments],
         },
       };
-    // case FOLLOW_USER:
-    // case UNFOLLOW_USER:
-    //   let indexs = state.following.findIndex(
-    //     (user) => user.following === action.payload.handle
-    //   );
-    //   state.user[indexs] = action.payload;
-    //   if (state.user.handle === action.payload.handle) {
-    //     state.user = action.payload;
-    //   }
-    //   return {
-    //     ...state,
-    //   };
-
+    case SET_PROFILE:
+      return {
+        profile: action.payload,
+      };
     default:
       return state;
   }

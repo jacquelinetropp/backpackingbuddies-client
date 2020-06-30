@@ -13,7 +13,7 @@ import PostSkeleton from "../util/PostSkeleton";
 import HomeGuest from "../components/layout/HomeGuest";
 
 import { connect } from "react-redux";
-import { getPosts } from "../redux/actions/dataActions";
+import { getFollowingPosts } from "../redux/actions/dataActions";
 import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
@@ -22,7 +22,7 @@ const styles = (theme) => ({
 
 export class Home extends Component {
   componentDidMount() {
-    this.props.getPosts();
+    this.props.getFollowingPosts();
   }
   render() {
     const { posts, loading } = this.props.data;
@@ -70,4 +70,6 @@ const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated,
 });
 
-export default connect(mapStateToProps, { getPosts })(withStyles(styles)(Home));
+export default connect(mapStateToProps, { getFollowingPosts })(
+  withStyles(styles)(Home)
+);

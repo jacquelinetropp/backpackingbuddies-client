@@ -61,6 +61,7 @@ export default function (state = initialState, action) {
     case FOLLOW_USER:
       return {
         ...state,
+        ...state.following,
         following: [
           {
             following: action.payload.handle,
@@ -71,7 +72,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         following: state.following.filter(
-          (follower) => (follower.following = action.payload.handle)
+          (follower) => follower.following !== action.payload.handle
         ),
       };
     case MARK_NOTIFCATIONS_READ:

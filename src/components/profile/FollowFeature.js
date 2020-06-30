@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { followUser, unfollowUser } from "../../redux/actions/userActions";
 
 import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
+import Typography from "@material-ui/core/Typography";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import { withRouter } from "react-router-dom";
 
@@ -13,7 +14,7 @@ class FollowFeature extends Component {
     if (
       this.props.user.following &&
       this.props.user.following.find(
-        (follow) => follow.following === this.props.handle
+        (user) => user.following === this.props.handle
       )
     )
       return true;
@@ -26,33 +27,35 @@ class FollowFeature extends Component {
     this.props.unfollowUser(this.props.handle);
   };
   render() {
-    const { authenticated } = this.props;
-    const followerMarkup = this.followingUser ? (
-      <MyButton tip="Unfollow" onClick={this.unfollowUser}>
-        <AddBoxOutlinedIcon color="primary" />
-        <spam>Unfollow</spam>
-      </MyButton>
-    ) : (
-      <MyButton tip="Follow" onClick={this.followUser}>
-        <AddBoxIcon color="primary" />
-        <span>Follow</span>
-      </MyButton>
-    );
+    const { authenticated } = this.props.user;
+    const { followerCount } = this.props;
     return (
       <Fragment>
-        {authenticated ? (
+        {followerCount}{" "}
+        {followerCount.length === 1 ? (
+          <span>Follower</span>
+        ) : (
+          <span>Followers</span>
+        )}
+        <br />
+        {!authenticated ? null : this.followingUser() ? (
+          <MyButton tip="Unfollow" onClick={this.unfollowUser}>
+            <AddBoxOutlinedIcon color="primary" />
+            <Typography variant="body1">Unfollow</Typography>
+          </MyButton>
+        ) : (
           <MyButton tip="Follow" onClick={this.followUser}>
             <AddBoxIcon color="primary" />
-            <span>Follow</span>
+            <Typography variant="body1">Follow</Typography>
           </MyButton>
-        ) : null}
+        )}
       </Fragment>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  authenticated: state.user.authenticated,
+  user: state.user,
 });
 
 const mapActionsToProps = {

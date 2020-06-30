@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import dayjs from "dayjs";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import MuiLink from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
@@ -49,7 +49,15 @@ class StaticProfile extends Component {
   render() {
     const {
       classes,
-      profile: { handle, createdAt, imageUrl, bio, website, location },
+      profile: {
+        handle,
+        createdAt,
+        imageUrl,
+        bio,
+        website,
+        location,
+        followerCount,
+      },
     } = this.props;
 
     return (
@@ -89,7 +97,9 @@ class StaticProfile extends Component {
             )}
             <CalendarToday color="primary" />{" "}
             <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
-            <FollowFeature handle={handle} />
+            <hr />
+            <FollowFeature handle={handle} followerCount={followerCount} />
+            <hr />
           </div>
         </div>
       </Paper>

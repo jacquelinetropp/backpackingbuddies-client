@@ -21,14 +21,11 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from "@material-ui/icons/Link";
 import CalendarToday from "@material-ui/icons/CalendarToday";
 import EditIcon from "@material-ui/icons/Edit";
-import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 import MyButton from "../../util/MyButton";
 
 const styles = {
-  paper: {
-    padding: 20,
-  },
   profile: {
+    position: "relative",
     "& .image-wrapper": {
       textAlign: "center",
       position: "relative",
@@ -99,64 +96,58 @@ class Profile extends Component {
 
     let profileMarkup = !loading ? (
       authenticated ? (
-        <Paper className={classes.paper}>
-          <div className={classes.profile}>
-            <div className="image-wrapper">
-              <img src={imageUrl} alt="profile" className="profile-image" />
-              <input
-                type="file"
-                id="imageInput"
-                onChange={this.handleImageChange}
-                hidden="hidden"
-              />
+        <div className={classes.profile}>
+          <div className="image-wrapper">
+            <img src={imageUrl} alt="profile" className="profile-image" />
+            <input
+              type="file"
+              id="imageInput"
+              onChange={this.handleImageChange}
+              hidden="hidden"
+            />
 
-              <MyButton
-                tip="Edit profile picture"
-                onClick={this.handleEditPicture}
-                btnClassName="button"
-              >
-                <EditIcon color="primary" />
-              </MyButton>
-            </div>
-            <hr />
-            <div className="profile-details">
-              <MuiLink
-                component={Link}
-                to={`/user/${handle}`}
-                color="primary"
-                variant="h5"
-              >
-                @{handle}
-              </MuiLink>
-              <hr />
-              {bio && <Typography variant="body2">{bio}</Typography>}
-              <hr />
-              {location && (
-                <Fragment>
-                  <LocationOn color="primary" /> <span>{location}</span>
-                  <hr />
-                </Fragment>
-              )}
-              {website && (
-                <Fragment>
-                  <LinkIcon color="primary" />
-                  <a href={website} target="_blank" rel="noopener noreferrer">
-                    {" "}
-                    {website}
-                  </a>
-                  <hr />
-                </Fragment>
-              )}
-              <CalendarToday color="primary" />{" "}
-              <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
-            </div>
-
-            <MyButton tip="logout" onClick={this.handleLogout}>
-              <KeyboardReturn color="primary" />
+            <MyButton
+              tip="Edit profile picture"
+              onClick={this.handleEditPicture}
+              btnClassName="button"
+            >
+              <EditIcon color="primary" />
             </MyButton>
-            <EditDetails />
           </div>
-        </Paper>
+          <hr />
+          <div className="profile-details">
+            <MuiLink
+              component={Link}
+              to={`/user/${handle}`}
+              color="primary"
+              variant="h5"
+            >
+              @{handle}
+            </MuiLink>
+            <hr />
+            {bio && <Typography variant="body2">{bio}</Typography>}
+            <hr />
+            {location && (
+              <Fragment>
+                <LocationOn color="primary" /> <span>{location}</span>
+                <hr />
+              </Fragment>
+            )}
+            {website && (
+              <Fragment>
+                <LinkIcon color="primary" />
+                <a href={website} target="_blank" rel="noopener noreferrer">
+                  {" "}
+                  {website}
+                </a>
+                <hr />
+              </Fragment>
+            )}
+            <CalendarToday color="primary" />{" "}
+            <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
+          </div>
+          <EditDetails />
+        </div>
       ) : (
         <Paper className={classes.paper}>
           <Typography variant="body2" align="center">

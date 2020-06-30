@@ -47,5 +47,17 @@ export default {
       borderBottom: "1px solid rgba(0,0,0,0.1)",
       marginBottom: 20,
     },
+    paper: {
+      padding: 20,
+    },
+    link: {
+      display: "flex",
+      justifyContent: "center",
+      padding: 10,
+      alignItems: "center",
+    },
+    hr: {
+      borderTop: "1px solid rgba(0,0,0,.2)",
+    },
   },
 };
