@@ -13,7 +13,7 @@ import PostSkeleton from "../util/PostSkeleton";
 import HomeGuest from "../components/layout/HomeGuest";
 
 import { connect } from "react-redux";
-import { getPosts } from "../redux/actions/dataActions";
+import { getFollowingPosts } from "../redux/actions/dataActions";
 import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
@@ -22,16 +22,23 @@ const styles = (theme) => ({
 
 export class Home extends Component {
   componentDidMount() {
-    this.props.getPosts();
+    this.props.getFollowingPosts();
   }
   render() {
     const { posts, loading } = this.props.data;
     const { authenticated, classes } = this.props;
 
-    let recentPostsMarkup = !loading ? (
-      posts.map((post) => <Post key={post.postId} post={post} />)
-    ) : (
+    let recentPostsMarkup = loading ? (
       <PostSkeleton />
+    ) : posts.length === 0 ? (
+      <Fragment>
+        <Typography variant="h6">
+          No users are being followed. Go to the explore page and find some
+          people to follow!
+        </Typography>
+      </Fragment>
+    ) : (
+      posts.map((post) => <Post key={post.postId} post={post} />)
     );
 
     return (
@@ -70,4 +77,6 @@ const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated,
 });
 
-export default connect(mapStateToProps, { getPosts })(withStyles(styles)(Home));
+export default connect(mapStateToProps, { getFollowingPosts })(
+  withStyles(styles)(Home)
+);

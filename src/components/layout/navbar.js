@@ -25,6 +25,7 @@ const styles = {
   },
   Brand: {
     display: "flex",
+    color: "#524A21",
 
     "& visited": {
       color: "#524A21",

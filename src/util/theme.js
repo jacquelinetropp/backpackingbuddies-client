@@ -55,6 +55,7 @@ export default {
       justifyContent: "center",
       padding: 10,
       alignItems: "center",
+      color: "#7AB3CC",
     },
     hr: {
       borderTop: "1px solid rgba(0,0,0,.2)",

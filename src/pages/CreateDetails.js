@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { withRouter } from "react-router-dom";
@@ -8,7 +8,6 @@ import { createUserDetails, getUserData } from "../redux/actions/userActions";
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import MyButton from "../util/MyButton";
 import Typography from "@material-ui/core/Typography";
 
 const styles = (theme) => ({

@@ -6,6 +6,7 @@ import StaticProfile from "../components/profile/StaticProfile";
 import Grid from "@material-ui/core/Grid";
 import PostSkeleton from "../util/PostSkeleton";
 import ProfileSkeleton from "../util/ProfileSkeleton";
+import Typography from "@material-ui/core/Typography";
 
 import { connect } from "react-redux";
 import { getUserData } from "../redux/actions/dataActions";
@@ -36,8 +37,10 @@ class User extends Component {
 
     const postsMarkup = loading ? (
       <PostSkeleton />
-    ) : posts === null ? (
-      <p>No posts from this user</p>
+    ) : posts.length === 0 ? (
+      <Typography variant="h6">
+        No posts from this user. Check back later!
+      </Typography>
     ) : !postIdParam ? (
       posts.map((post) => <Post key={post.postId} post={post} />)
     ) : (

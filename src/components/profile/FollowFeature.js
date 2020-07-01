@@ -10,6 +10,15 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import { withRouter } from "react-router-dom";
 
 class FollowFeature extends Component {
+  state = {
+    follwerCount: this.props.followerCount,
+  };
+
+  componentDidMount() {
+    console.log(this.state);
+    this.setState({ followerCount: this.props.followerCount });
+  }
+
   followingUser = () => {
     if (
       this.props.user.following &&
@@ -22,16 +31,22 @@ class FollowFeature extends Component {
   };
   followUser = () => {
     this.props.followUser(this.props.handle);
+    this.setState((prevState) => {
+      return { followerCount: prevState.followerCount + 1 };
+    });
   };
   unfollowUser = () => {
     this.props.unfollowUser(this.props.handle);
+    this.setState((prevState) => {
+      return { followerCount: prevState.followerCount - 1 };
+    });
   };
   render() {
     const { authenticated } = this.props.user;
     const { followerCount } = this.props;
     return (
       <Fragment>
-        {followerCount}{" "}
+        {this.state.followerCount}{" "}
         {followerCount.length === 1 ? (
           <span>Follower</span>
         ) : (
