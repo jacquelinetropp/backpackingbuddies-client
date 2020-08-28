@@ -77,7 +77,7 @@ class SignUp extends Component {
           </Typography>
           <form noValidate onSubmit={this.handleSubmit}>
             <TextField
-              id="email"
+              id="email_signup"
               name="email"
               type="email"
               label="Email"
@@ -89,7 +89,7 @@ class SignUp extends Component {
               fullWidth
             />
             <TextField
-              id="password"
+              id="password_signup"
               name="password"
               type="password"
               label="Password"

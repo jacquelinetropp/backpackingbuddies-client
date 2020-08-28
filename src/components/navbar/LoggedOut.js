@@ -53,6 +53,7 @@ class LoggedOut extends Component {
   }
   onSubmit = (event) => {
     event.preventDefault();
+    event.stopPropagation();
     const userData = {
       email: this.state.email,
       password: this.state.password,

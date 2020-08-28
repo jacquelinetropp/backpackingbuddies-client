@@ -9,8 +9,8 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../redux/actions/userActions";
 
 import HomeIcon from "@material-ui/icons/Home";
-import ChatIcon from "@material-ui/icons/Chat";
 import { Button } from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
 
 const styles = {
   navigation: {
@@ -36,8 +36,8 @@ export class LoggedIn extends Component {
           </MyButton>
         </Link>
         <Notifications />
-        <MyButton tip="Chat coming soon">
-          <ChatIcon />
+        <MyButton tip="Search coming soon">
+          <SearchIcon />
         </MyButton>
         <Button className={classes.button} onClick={this.handleLogout}>
           Logout
