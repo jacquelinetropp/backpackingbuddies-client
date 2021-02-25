@@ -25,11 +25,18 @@ const styles = {
     display: "flex",
     marginBottom: 20,
     position: "relative",
+    '@media (max-width:500px)': {
+      flexDirection: 'column',      
+    },
   },
   image: {
     minWidth: 200,
     objectFit: "cover",
+    '@media (max-width:500px)': {
+      
+    },
   },
+  
   content: {
     padding: 25,
   },

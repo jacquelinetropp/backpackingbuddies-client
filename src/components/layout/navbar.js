@@ -3,7 +3,7 @@ import AppIcon from "../../images/icon2.png";
 import { Link } from "react-router-dom";
 
 import withStyles from "@material-ui/core/styles/withStyles";
-import LoggedOut from "../navbar/LoggedOut";
+import LoggedOut2 from "../navbar/LoggedOut2";
 import LoggedIn from "../navbar/LoggedIn";
 
 import { connect } from "react-redux";
@@ -19,9 +19,31 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+
+    '@media (max-width:425px)': {
+      padding: "0 3px",
+    },
+    '@media (max-width:320px)': {
+      padding: "0 5px",
+    }
+  },
+  title: {
+    '@media (max-width:425px)': {
+      alignItems: "center",
+    }
+  },
+  authTitle: {
+    '@media (max-width:450px)': {
+      display: 'none'
+    }
   },
   imageIcon: {
     maxHeight: 25,
+    alignSelf: 'center',
+
+    '@media (max-width:320px)': {
+      maxHeight: 30,
+    }
   },
   Brand: {
     display: "flex",
@@ -45,11 +67,16 @@ class Navbar extends Component {
               alt="logo - backpack"
               className={classes.imageIcon}
             />
-            <Typography variant="h5" className={classes.title}>
+            {authenticated ? 
+            (<Typography variant="h5" className={classes.authTitle}>
               Backpacking Buddies
-            </Typography>
+            </Typography>) :
+            (<Typography variant="h5" className={classes.title}>
+              Backpacking Buddies
+            </Typography>)}
+           
           </Link>
-          {authenticated ? <LoggedIn /> : <LoggedOut />}
+          {authenticated ? <LoggedIn /> : <LoggedOut2 />}
         </Toolbar>
       </AppBar>
     );

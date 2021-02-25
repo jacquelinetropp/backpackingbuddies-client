@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
-import AppIcon from "../images/icon.png";
+import AppIcon from "../images/icon2.png";
 import { Link } from "react-router-dom";
 
 //redux
@@ -17,6 +17,9 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const style = (theme) => ({
   ...theme.spreadThis,
+  imageIcon: {
+    maxWidth: 100,
+  },
 });
 
 class Login extends Component {
@@ -56,14 +59,18 @@ class Login extends Component {
       <Grid container className={classes.form}>
         <Grid item sm />
         <Grid item sm>
-          <img src={AppIcon} alt="logo - monkey" className={classes.image} />
+          <img
+            src={AppIcon}
+            alt="logo - backpack"
+            className={classes.imageIcon}
+          />
           <Typography variant="h2" className={classes.pageTitle}>
             Login
           </Typography>
           <form noValidate onSubmit={this.handleSubmit}>
             <TextField
-              id="emailLogin"
-              name="emailLogin"
+              id="email"
+              name="email"
               type="email"
               label="Email"
               className={classes.textField}
@@ -74,8 +81,8 @@ class Login extends Component {
               fullWidth
             />
             <TextField
-              id="passwordLogin"
-              name="passwordLogin"
+              id="password"
+              name="password"
               type="password"
               label="Password"
               className={classes.textField}

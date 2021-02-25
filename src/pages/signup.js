@@ -19,7 +19,16 @@ const style = (theme) => ({
   ...theme.spreadThis,
   imageIcon: {
     maxWidth: 100,
+    
+    [theme.breakpoints.down('md')]: {
+      maxWidth: 70,
+    },
   },
+  textField: {
+    '@media (max-width: 768px)': {
+      margin: "5px auto",
+    }
+  }
 });
 
 class SignUp extends Component {
@@ -139,7 +148,7 @@ class SignUp extends Component {
               color="primary"
               className={classes.button}
             >
-              Signup
+              Sign Up
               {loading && (
                 <CircularProgress size={30} className={classes.progress} />
               )}

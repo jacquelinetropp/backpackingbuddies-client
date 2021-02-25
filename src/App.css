@@ -34,3 +34,15 @@ a:visited {
 .Mui-focused {
   color: #524a21;
 }
+
+@media screen and (max-width: 1024px) {
+  .page {
+    padding: 0 2rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .container {
+    margin: 60px auto 0 auto;
+  }
+}

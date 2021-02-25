@@ -28,6 +28,9 @@ import Axios from "axios";
 
 const theme = createMuiTheme(themeFile);
 
+Axios.defaults.baseURL =
+  "https://us-central1-backpackingbuddies-97109.cloudfunctions.net/api";
+
 const token = localStorage.FBIdToken;
 if (token) {
   const decodedToken = jwtDecode(token);

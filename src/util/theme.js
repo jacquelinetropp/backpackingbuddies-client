@@ -1,3 +1,5 @@
+import { ThemeConsumer } from "styled-components";
+
 export default {
   palette: {
     primary: {
@@ -10,9 +12,25 @@ export default {
       dark: "#524A21",
     },
   },
+
+  typography: {
+    useNextVariants: true,
+
+    h2: {
+      '@media (max-width:768px)': {
+        fontSize: '2rem',
+    }}
+  },
+
+  MuiFormControl: {
+    margin: "5px auto 5px auto",
+  },
+  
   spreadThis: {
     typography: {
       useNextVariants: true,
+
+
     },
     form: {
       textAlign: "center",
