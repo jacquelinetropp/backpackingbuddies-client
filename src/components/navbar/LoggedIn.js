@@ -36,9 +36,7 @@ export class LoggedIn extends Component {
           </MyButton>
         </Link>
         <Notifications />
-        <MyButton tip="Search coming soon">
-          <SearchIcon />
-        </MyButton>
+  
         <Button className={classes.button} onClick={this.handleLogout}>
           Logout
         </Button>

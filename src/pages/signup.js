@@ -19,15 +19,19 @@ const style = (theme) => ({
   ...theme.spreadThis,
   imageIcon: {
     maxWidth: 100,
-    
-    [theme.breakpoints.down('md')]: {
+
+    [theme.breakpoints.down("md")]: {
       maxWidth: 70,
     },
   },
   textField: {
-    '@media (max-width: 768px)': {
+    "@media (max-width: 768px)": {
       margin: "5px auto",
-    }
+    },
+  },
+  window: {
+    width: '75%',
+    margin: '0 auto'
   }
 });
 
@@ -84,7 +88,7 @@ class SignUp extends Component {
           <Typography variant="h2" className={classes.pageTitle}>
             Signup
           </Typography>
-          <form noValidate onSubmit={this.handleSubmit}>
+          <form noValidate onSubmit={this.handleSubmit} className={classes.window}>
             <TextField
               id="email_signup"
               name="email"
