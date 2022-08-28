@@ -35,6 +35,8 @@ class User extends Component {
     const { posts, loading } = this.props.data;
     const { postIdParam } = this.state;
 
+    const sortedPosts = posts.sort((a,b) => b.createdAt > a.createdAt ? 1: -1);
+
     const postsMarkup = loading ? (
       <PostSkeleton />
     ) : posts.length === 0 ? (
@@ -42,9 +44,9 @@ class User extends Component {
         No posts from this user. Check back later!
       </Typography>
     ) : !postIdParam ? (
-      posts.map((post) => <Post key={post.postId} post={post} />)
+      sortedPosts.map((post) => <Post key={post.postId} post={post} />)
     ) : (
-      posts.map((post) => {
+      sortedPosts.map((post) => {
         if (post.postId !== postIdParam)
           return <Post key={post.postId} post={post} />;
         else return <Post key={post.postId} post={post} openDialog />;

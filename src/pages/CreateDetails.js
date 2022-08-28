@@ -35,7 +35,6 @@ class CreateDetails extends Component {
   componentDidMount() {
     const { credentials } = this.props;
     this.mapUserDetailsToState(credentials);
-    console.log(credentials);
   }
 
   handleChange = (event) => {

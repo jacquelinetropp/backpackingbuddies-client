@@ -15,7 +15,6 @@ class FollowFeature extends Component {
   };
 
   componentDidMount() {
-    console.log(this.state);
     this.setState({ followerCount: this.props.followerCount });
   }
 

@@ -27,6 +27,8 @@ export class Home extends Component {
   render() {
     const { posts, loading } = this.props.data;
     const { authenticated, classes } = this.props;
+    
+    const sortedPosts = posts.sort((a,b) => b.createdAt > a.createdAt ? 1: -1);
 
     let recentPostsMarkup = loading ? (
       <PostSkeleton />
@@ -38,7 +40,7 @@ export class Home extends Component {
         </Typography>
       </Fragment>
     ) : (
-      posts.map((post) => <Post key={post.postId} post={post} />)
+      sortedPosts.map((post) => <Post key={post.postId} post={post} />)
     );
 
     return (

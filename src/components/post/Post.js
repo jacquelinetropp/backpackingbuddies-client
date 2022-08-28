@@ -43,6 +43,9 @@ const styles = {
   userDate: {
     display: "flex",
     alignItems: "baseline",
+    '@media (max-width:768px)': {
+      flexDirection: 'column',      
+    },
   },
   date: {
     paddingLeft: 10,
